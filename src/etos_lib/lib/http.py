@@ -27,7 +27,15 @@ DEFAULT_RETRY = Retry(
     status=10,  # With 1 as backoff_factor, will retry for 1023s
     backoff_factor=1,
     other=0,
-    status_forcelist=Retry.RETRY_AFTER_STATUS_CODES,  # 413, 429, 503
+    status_forcelist=[
+        408,  # Request timeout
+        429,  # Too many requests
+        500,  # Internal server error
+        502,  # Bad gateway
+        503,  # Service unavailable
+        504,  # Gateway Timeout
+    ],
+    respect_retry_after_header=True,
 )
 
 
