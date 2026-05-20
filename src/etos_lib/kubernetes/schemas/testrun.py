@@ -123,9 +123,9 @@ class Suite(BaseModel):
 class Providers(BaseModel):
     """Providers describes the providers to use for a testrun."""
 
-    executionSpace: Optional[str] = "default"
-    logArea: Optional[str] = "default"
-    iut: Optional[str] = "default"
+    executionSpace: Optional[str] = ""
+    logArea: Optional[str] = ""
+    iut: Optional[str] = ""
 
 
 class TestRunner(BaseModel):
