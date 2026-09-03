@@ -28,7 +28,7 @@ class Event(BaseModel):
     """Base internal messaging event."""
 
     id: int | None = None
-    event: str = "Unknown"
+    event: str = "unknown"
     data: Any
     meta: str = "*"
 
@@ -54,28 +54,28 @@ class UserEvent(Event):
 class Ping(ServerEvent):
     """A ping event. Sent to keep connection between server and client alive."""
 
-    event: str = "Ping"
+    event: str = "ping"
     data: Any = None
 
 
 class Error(ServerEvent):
     """An error from the messaging server."""
 
-    event: str = "Error"
+    event: str = "error"
     data: Any = None
 
 
 class Unknown(UserEvent):
     """An unknown event."""
 
-    event: str = "Unknown"
+    event: str = "unknown"
     data: Any = None
 
 
 class Shutdown(UserEvent):
     """A shutdown event from ETOS."""
 
-    event: str = "Shutdown"
+    event: str = "shutdown"
     data: Result
 
     def __str__(self) -> str:
@@ -89,7 +89,7 @@ class Shutdown(UserEvent):
 class Message(UserEvent):
     """An ETOS user log event."""
 
-    event: str = "Message"
+    event: str = "message"
     data: Log
     meta: str = Field(default_factory=lambda data: data["data"].level)
 
@@ -101,7 +101,7 @@ class Message(UserEvent):
 class Report(UserEvent):
     """An ETOS test case report file event."""
 
-    event: str = "Report"
+    event: str = "report"
     data: File
 
     def __str__(self) -> str:
@@ -112,7 +112,7 @@ class Report(UserEvent):
 class Artifact(UserEvent):
     """An ETOS test case artifact file event."""
 
-    event: str = "Artifact"
+    event: str = "artifact"
     data: File
 
     def __str__(self) -> str:
@@ -123,7 +123,7 @@ class Artifact(UserEvent):
 class Status(UserEvent):
     """An ETOS status event. Published to show current status of a service."""
 
-    event: str = "Status"
+    event: str = "status"
     data: ServiceStatus
     meta: str = Field(default_factory=lambda data: data["data"].name)
 
